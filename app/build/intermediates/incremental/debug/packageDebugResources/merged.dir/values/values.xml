@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="thickness_divider">1dp</dimen>
+    <string name="app_name">Deposit App</string>
+    <string name="back_button">Back</string>
+    <string name="calculations_result">Calculations results</string>
+    <string name="cancel">Cancel</string>
+    <string name="checkout">Checkout</string>
+    <string name="firstScreen">First Screen</string>
+    <string name="income_precentage">Income Percentage:  </string>
+    <string name="next">Next</string>
+    <string name="return_to_main_screen">Go to Main Screen</string>
+    <string name="secondScreen">Second Screen</string>
+    <string name="start_deposit">Count Deposit</string>
+    <string name="submit">Submit</string>
+    <string name="total_income">Total Income: </string>
+    <string name="total_savings">Total savings: </string>
+    <string name="total_sum">Sum:  </string>
+    <style name="Theme.DepositApp" parent="android:Theme.Material.Light.NoActionBar"/>
+</resources>

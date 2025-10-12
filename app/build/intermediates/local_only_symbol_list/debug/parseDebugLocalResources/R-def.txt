@@ -1,0 +1,25 @@
+R_DEF: Internal format may change without notice
+local
+dimen padding_medium
+dimen padding_small
+dimen thickness_divider
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+mipmap ic_launcher
+mipmap ic_launcher_round
+string app_name
+string back_button
+string calculations_result
+string cancel
+string checkout
+string firstScreen
+string income_precentage
+string next
+string return_to_main_screen
+string secondScreen
+string start_deposit
+string submit
+string total_income
+string total_savings
+string total_sum
+style Theme.DepositApp
