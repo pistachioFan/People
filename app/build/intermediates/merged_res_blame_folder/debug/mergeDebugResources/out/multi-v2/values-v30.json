@@ -4,7 +4,7 @@
             "outputFile": "com.example.depositapp-mergeDebugResources-39:/values-v30/values-v30.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vlad2\\.gradle\\caches\\8.13\\transforms\\f5600104534250dea9781746e86ed86a\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
+                    "source": "C:\\Users\\vlad2\\.gradle\\caches\\8.13\\transforms\\a746b2b67b53fd18975bbcf3afb645e0\\transformed\\material3-release\\res\\values-v30\\values-v30.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

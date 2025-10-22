@@ -25,8 +25,10 @@
     <string name="calculations_result">Calculations results</string>
     <string name="total_sum">Sum:  </string>
     <string name="income_precentage">Income Percentage:  </string>
-    <string name = "total_income">Total Income: </string>
+    <string name ="total_income">Total Income: </string>
     <string name="submit">Submit</string>
     <string name="return_to_main_screen">Go to Main Screen</string>
-    <string name = "total_savings">Total savings: </string>
+    <string name ="total_savings">Total savings: </string>
+    <string name="view_history">View History</string>
+    <string name="dep_history">Deposit History</string>
 </resources>

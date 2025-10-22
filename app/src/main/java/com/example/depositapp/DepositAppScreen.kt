@@ -15,6 +15,7 @@
  */
 package com.example.depositapp
 
+import android.content.Context
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
 //import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,7 +34,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 //import androidx.navigation.NavHostController
@@ -41,13 +44,19 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.room.Room
 import com.example.depositapp.datasource.DataSource
 import com.example.depositapp.model.ScreenFields
+import com.example.depositapp.roomdatabase.DepositEntry
+import com.example.depositapp.roomdatabase.DepositDao
+import com.example.depositapp.roomdatabase.DepDatabase
+import com.example.depositapp.roomdatabase.DepositRepository
 //import com.example.depositapp.ui.AccompanimentMenuScreen
 import com.example.depositapp.ui.CheckoutScreen
 import com.example.depositapp.ui.DepositAndIRScreen
 //import com.example.depositapp.ui.EntreeMenuScreen
 import com.example.depositapp.ui.DepositViewModel
+import com.example.depositapp.ui.HistoryScreen
 import com.example.depositapp.ui.MonthlyDepAndPeriodScreen
 import com.example.depositapp.ui.StartScreen
 //import java.nio.file.WatchEvent
@@ -56,6 +65,7 @@ import com.example.depositapp.ui.StartScreen
 
 enum class DepositAppScreen(@StringRes val title: Int){
     Start(title = R.string.app_name),
+    DepositHistory(title = R.string.dep_history),
     FirstScreen(title = R.string.firstScreen),
     SecondScreen(title = R.string.secondScreen),
     //Accompaniment(title = R.string.choose_accompaniment),
@@ -96,6 +106,11 @@ fun DepositApp() {
     // Create ViewModel
     val viewModel: DepositViewModel = viewModel()
 
+    val context = LocalContext.current
+    val db = remember { DepDatabase.getDatabase(context) }
+    val repository = remember{ DepositRepository(db.depositDao()) }
+
+
     Scaffold(
         topBar = {
             DepositAppBar (
@@ -116,8 +131,14 @@ fun DepositApp() {
                 StartScreen(
                     onStartOrderButtonClicked = {
                         navController.navigate(DepositAppScreen.FirstScreen.name) },
+                    onViewSavedDepositsClicked = {
+                        navController.navigate(route = DepositAppScreen.DepositHistory.name)
+                    },
                     modifier = Modifier.fillMaxSize()
                 )
+            }
+            composable (route = DepositAppScreen.DepositHistory.name){
+                HistoryScreen()
             }
             composable (route = DepositAppScreen.FirstScreen.name){
                 DepositAndIRScreen(

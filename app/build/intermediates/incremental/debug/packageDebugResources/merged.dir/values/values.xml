@@ -8,6 +8,7 @@
     <string name="calculations_result">Calculations results</string>
     <string name="cancel">Cancel</string>
     <string name="checkout">Checkout</string>
+    <string name="dep_history">Deposit History</string>
     <string name="firstScreen">First Screen</string>
     <string name="income_precentage">Income Percentage:  </string>
     <string name="next">Next</string>
@@ -18,5 +19,6 @@
     <string name="total_income">Total Income: </string>
     <string name="total_savings">Total savings: </string>
     <string name="total_sum">Sum:  </string>
+    <string name="view_history">View History</string>
     <style name="Theme.DepositApp" parent="android:Theme.Material.Light.NoActionBar"/>
 </resources>

@@ -34,6 +34,7 @@ import com.example.depositapp.R
 @Composable
 fun StartScreen(
     onStartOrderButtonClicked: () -> Unit,
+    onViewSavedDepositsClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -47,16 +48,10 @@ fun StartScreen(
         ) {
             Text(stringResource(R.string.start_deposit))
         }
+        Button(onClick = onViewSavedDepositsClicked,
+            modifier = Modifier.widthIn(min = 230.dp)) {
+            Text(stringResource(R.string.view_history))
+        }
     }
 }
 
-@Preview
-@Composable
-fun StartOrderPreview(){
-    StartScreen(
-        onStartOrderButtonClicked = {},
-        modifier = Modifier
-            .padding(dimensionResource(R.dimen.padding_medium))
-            .fillMaxSize()
-    )
-}

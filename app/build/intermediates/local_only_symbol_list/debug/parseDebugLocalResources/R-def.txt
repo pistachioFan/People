@@ -12,6 +12,7 @@ string back_button
 string calculations_result
 string cancel
 string checkout
+string dep_history
 string firstScreen
 string income_precentage
 string next
@@ -22,4 +23,5 @@ string submit
 string total_income
 string total_savings
 string total_sum
+string view_history
 style Theme.DepositApp

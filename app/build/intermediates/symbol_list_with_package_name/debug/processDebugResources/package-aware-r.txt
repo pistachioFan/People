@@ -215,6 +215,7 @@ string close_drawer
 string close_sheet
 string default_error_message
 string default_popup_window_title
+string dep_history
 string dropdown_menu
 string firstScreen
 string in_progress
@@ -300,6 +301,7 @@ string tooltip_label
 string total_income
 string total_savings
 string total_sum
+string view_history
 style DialogWindowTheme
 style EdgeToEdgeFloatingDialogTheme
 style EdgeToEdgeFloatingDialogWindowTheme
