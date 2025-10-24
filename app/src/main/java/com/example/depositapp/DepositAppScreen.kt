@@ -15,6 +15,7 @@
  */
 package com.example.depositapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxSize
@@ -38,7 +39,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
 //import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -56,6 +59,7 @@ import com.example.depositapp.ui.CheckoutScreen
 import com.example.depositapp.ui.DepositAndIRScreen
 //import com.example.depositapp.ui.EntreeMenuScreen
 import com.example.depositapp.ui.DepositViewModel
+import com.example.depositapp.ui.DepositViewModelFactory
 import com.example.depositapp.ui.HistoryScreen
 import com.example.depositapp.ui.MonthlyDepAndPeriodScreen
 import com.example.depositapp.ui.StartScreen
@@ -96,20 +100,18 @@ fun DepositAppBar(currentScreenTitle: Int,
 }
 
 
+@SuppressLint("ViewModelConstructorInComposable")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DepositApp() {
+fun DepositApp(app: MyApp) {
     // Create Controller and initialization
     val navController = rememberNavController()
     val backStackEntry by navController.currentBackStackEntryAsState()
     val currentScreen = DepositAppScreen.valueOf(backStackEntry?.destination?.route ?: DepositAppScreen.Start.name)
     // Create ViewModel
-    val viewModel: DepositViewModel = viewModel()
-
-    val context = LocalContext.current
-    val db = remember { DepDatabase.getDatabase(context) }
-    val repository = remember{ DepositRepository(db.depositDao()) }
-
+    val viewModel: DepositViewModel = viewModel(
+        factory = DepositViewModelFactory(app.db)
+    )//DepositViewModel(DepositRepository(app.db.depositDao()))
 
     Scaffold(
         topBar = {
@@ -138,7 +140,9 @@ fun DepositApp() {
                 )
             }
             composable (route = DepositAppScreen.DepositHistory.name){
-                HistoryScreen()
+                HistoryScreen(
+                    viewModel
+                )
             }
             composable (route = DepositAppScreen.FirstScreen.name){
                 DepositAndIRScreen(
@@ -184,9 +188,10 @@ fun DepositApp() {
 
                         viewModel.resetValues()
                         navController.popBackStack(route = DepositAppScreen.Start.name, inclusive = false)
-
                     },
-                    onCancelButtonClicked = {
+                    onSaveButtonClicked = {
+                        viewModel.saveCurrentDeposit()
+
                         viewModel.resetValues()
                         navController.popBackStack(route = DepositAppScreen.Start.name, inclusive = false)
                     }

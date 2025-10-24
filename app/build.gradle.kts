@@ -26,7 +26,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.depositapp"
-        minSdk = 24
+        minSdk = 25
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -64,6 +64,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.compose.material)
     val room_version = "2.8.2"
 
     implementation("androidx.room:room-runtime:$room_version")

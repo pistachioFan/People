@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.depositapp-mergeDebugResources-39:/values-v21/values-v21.xml",
+            "outputFile": "com.example.depositapp-mergeDebugResources-43:/values-v21/values-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\vlad2\\.gradle\\caches\\8.13\\transforms\\1571ffa2e41545072d50616af424ef9e\\transformed\\core-1.15.0\\res\\values-v21\\values-v21.xml",
+                    "source": "C:\\Users\\vlad2\\.gradle\\caches\\8.13\\transforms\\680eaec66a5d59e02d3b3bc9737a11d4\\transformed\\core-1.15.0\\res\\values-v21\\values-v21.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,13",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

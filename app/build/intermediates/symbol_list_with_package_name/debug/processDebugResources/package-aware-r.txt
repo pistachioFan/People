@@ -72,6 +72,8 @@ dimen notification_top_pad_large_text
 dimen padding_medium
 dimen padding_small
 dimen thickness_divider
+drawable circular_vignette_bottom
+drawable circular_vignette_top
 drawable ic_call_answer
 drawable ic_call_answer_low
 drawable ic_call_answer_video
@@ -93,6 +95,8 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable rectangular_vignette_bottom
+drawable rectangular_vignette_top
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
 id accessibility_custom_action_1
@@ -284,6 +288,7 @@ string not_selected
 string range_end
 string range_start
 string return_to_main_screen
+string save_results
 string secondScreen
 string selected
 string snackbar_pane_title

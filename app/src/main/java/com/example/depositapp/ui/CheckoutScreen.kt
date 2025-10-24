@@ -49,7 +49,7 @@ import com.example.depositapp.model.DepositUiState
 fun CheckoutScreen(
     depositUiState: DepositUiState,
     onNextButtonClicked: () -> Unit,
-    onCancelButtonClicked: () -> Unit,
+    onSaveButtonClicked: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -109,38 +109,26 @@ fun CheckoutScreen(
                         text = depositUiState.incomeRate.toString()
                     )
                 }
-                Button(
-                    modifier = Modifier
-                        .align(alignment = Alignment.CenterHorizontally),
-                    onClick = onNextButtonClicked
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.return_to_main_screen)
-                    )
+                Row(modifier = Modifier) {
+                    Button(
+                        modifier = Modifier,
+                        onClick = onSaveButtonClicked
+                    ){
+                        Text(
+                            text = stringResource(id = R.string.save_results)
+                        )
+                    }
+                    Button(
+                        modifier = Modifier,
+                        onClick = onNextButtonClicked
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.return_to_main_screen)
+                        )
+                    }
                 }
             }
         }
     }
 }
 
-/*
-@Preview
-@Composable
-fun CheckoutScreenPreview() {
-    CheckoutScreen(
-        orderUiState = DepositUiState(
-            firstScreen = DataSource.firstScreenT,
-            sideDish = DataSource.sideDishMenuItems[0],
-            accompaniment = DataSource.accompanimentMenuItems[0],
-            itemTotalPrice = 15.00,
-            orderTax = 1.00,
-            orderTotalPrice = 16.00
-        ),
-        onNextButtonClicked = {},
-        onCancelButtonClicked = {},
-        modifier = Modifier
-            .padding(dimensionResource(R.dimen.padding_medium))
-            .verticalScroll(rememberScrollState())
-    )
-}
-*/

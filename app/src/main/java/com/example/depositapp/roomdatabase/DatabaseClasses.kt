@@ -15,9 +15,9 @@ import androidx.room.RoomDatabase
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
-@Entity(tableName = "deposits")
+@Entity()//tableName = "deposit")
 data class DepositEntry(
-    @PrimaryKey val id: String = UUID.randomUUID().toString(),
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     @ColumnInfo(name="total_savings") val totalSavings: Double,
     @ColumnInfo(name="future_value") val futureValue: Double,
     @ColumnInfo(name="total_income") val totalIncome: Double,
@@ -26,22 +26,25 @@ data class DepositEntry(
 
 @Dao
 interface DepositDao{
-    @Query("SELECT * FROM deposits")
+    @Query("SELECT * FROM DepositEntry")
     fun getAll(): Flow<List<DepositEntry>>
 
-    @Query("SELECT * FROM deposits WHERE id IN (:depIds)")
-    fun loadAllByIds(depIds: IntArray): List<DepositEntry>
+    @Query("SELECT * FROM DepositEntry WHERE id IN (:depIds)")
+    suspend fun loadAllByIds(depIds: IntArray): List<DepositEntry>
 
     @Insert
-    fun insert(deposits: DepositEntry)
+    suspend fun insert(deposits: DepositEntry)
 
     @Delete
-    fun delete(deposit: DepositEntry)
+    suspend fun delete(deposit: DepositEntry)
 }
 
 class DepositRepository(private val depositDao: DepositDao) {
     val allDeposits: Flow<List<DepositEntry>> = depositDao.getAll()
 
+    fun getAll(): Flow<List<DepositEntry>> {
+        return depositDao.getAll()
+    }
     suspend fun insertDeposit(deposit: DepositEntry) {
         depositDao.insert(deposit)
     }
@@ -51,7 +54,7 @@ class DepositRepository(private val depositDao: DepositDao) {
     }
 }
 
-@Database(entities = [DepositEntry::class], version = 1)
+@Database(entities = [DepositEntry::class], version = 2)
 abstract class DepDatabase: RoomDatabase(){
     abstract fun depositDao(): DepositDao
 

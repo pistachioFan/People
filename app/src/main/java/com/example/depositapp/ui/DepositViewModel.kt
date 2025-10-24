@@ -17,29 +17,43 @@ package com.example.depositapp.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.example.depositapp.MyApp
 import com.example.depositapp.model.ScreenFields
 //import com.example.depositapp.model.MenuItem.AccompanimentItem
 //import com.example.depositapp.model.MenuItem.EntreeItem
 //import com.example.depositapp.model.MenuItem.SideDishItem
 import com.example.depositapp.model.DepositUiState
+import com.example.depositapp.roomdatabase.DepDatabase
+import com.example.depositapp.roomdatabase.DepositEntry
+import com.example.depositapp.roomdatabase.DepositRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class DepositViewModel : ViewModel() {
-
+class DepositViewModel(val repository: DepositRepository) : ViewModel() {
+    val deposits: StateFlow<List<DepositEntry>> = repository.allDeposits
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = emptyList()
+    )
     private val _uiState = MutableStateFlow(DepositUiState())
     val uiState: StateFlow<DepositUiState> = _uiState.asStateFlow()
 
     fun updateFirstScreen(firstScreen: ScreenFields) {
-        val previousFirstScreen = _uiState.value.firstScreen
+        //val previousFirstScreen = _uiState.value.firstScreen
         updateItem(firstScreen, 1)
         Log.d("updateFirstScreen", _uiState.value.firstScreen?.secondField ?: "")
     }
 
     fun updateSecondScreen(secondScreen: ScreenFields) {
-        val previousSecondScreen = _uiState.value.secondScreen
+        //val previousSecondScreen = _uiState.value.secondScreen
         updateItem(secondScreen, 2)
     }
 
@@ -86,8 +100,37 @@ class DepositViewModel : ViewModel() {
             )
         }
     }
+    fun saveCurrentDeposit(){
+        viewModelScope.launch {
+            try {
+                val newEntry = DepositEntry(
+                    totalSavings = _uiState.value.totalSavings,
+                    futureValue = _uiState.value.futureValue,
+                    totalIncome = _uiState.value.totalIncome,
+                    incomeRate = _uiState.value.incomeRate
+                )
+                repository.insertDeposit(newEntry)
+            }
+            catch(e: Exception){
+                Log.d("DB_insertion", "nope $e")
+            }
+        }
+    }
+    fun removeDeposit(depositEntry: DepositEntry){
+        viewModelScope.launch {
+            repository.deleteDeposit(depositEntry)
+        }
+    }
+
 }
 
-//fun Double.formatPrice(): String {
-//    return NumberFormat.getCurrencyInstance().format(this)
-//}
+class DepositViewModelFactory(private val database: DepDatabase): ViewModelProvider.Factory {
+    override fun <T: ViewModel> create(modelClass: Class<T>): T{
+        if(modelClass.isAssignableFrom(DepositViewModel::class.java)){
+            return DepositViewModel(
+                DepositRepository(
+                    database.depositDao())) as T
+        }
+        throw IllegalArgumentException("Unrecognized ViewModel class")
+    }
+}

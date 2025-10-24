@@ -17,6 +17,7 @@ string firstScreen
 string income_precentage
 string next
 string return_to_main_screen
+string save_results
 string secondScreen
 string start_deposit
 string submit
