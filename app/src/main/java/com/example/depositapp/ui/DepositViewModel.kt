@@ -87,7 +87,7 @@ class DepositViewModel(val repository: DepositRepository) : ViewModel() {
                 futureValue = futureValue * (1 + (interestRate / 100)) + monthlyDeposit
             }
             //val interest = (currentSavings * (interestRate / 100)) * (totalMonths)
-            Log.d("uiStateUpdate", firstScreen?.secondField ?: "")
+            Log.d("uiStateUpdate", currentState?.firstScreen?.firstField ?: "")
 
             currentState.copy(
                 firstScreen = firstScreen,

@@ -76,6 +76,10 @@ MERGED from [androidx.core:core-viewtree:1.0.0] C:\Users\vlad2\.gradle\caches\8.
 		INJECTED from C:\Users\vlad2\AndroidStudioProjects\DepositApp2\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\vlad2\AndroidStudioProjects\DepositApp2\app\src\main\AndroidManifest.xml:17:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\vlad2\AndroidStudioProjects\DepositApp2\app\src\main\AndroidManifest.xml:19:1-62
+	android:name
+		ADDED from C:\Users\vlad2\AndroidStudioProjects\DepositApp2\app\src\main\AndroidManifest.xml:19:18-60
 application
 ADDED from C:\Users\vlad2\AndroidStudioProjects\DepositApp2\app\src\main\AndroidManifest.xml:20:5-37:19
 INJECTED from C:\Users\vlad2\AndroidStudioProjects\DepositApp2\app\src\main\AndroidManifest.xml:20:5-37:19

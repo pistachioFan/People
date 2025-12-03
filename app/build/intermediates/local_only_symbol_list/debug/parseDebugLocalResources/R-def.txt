@@ -8,6 +8,7 @@ drawable ic_launcher_foreground
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
+string auth_screen
 string back_button
 string calculations_result
 string cancel

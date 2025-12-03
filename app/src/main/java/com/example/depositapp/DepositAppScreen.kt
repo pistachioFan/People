@@ -25,6 +25,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Button
 //import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -39,6 +40,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.viewmodel.viewModelFactory
@@ -72,6 +74,7 @@ enum class DepositAppScreen(@StringRes val title: Int){
     DepositHistory(title = R.string.dep_history),
     FirstScreen(title = R.string.firstScreen),
     SecondScreen(title = R.string.secondScreen),
+    AuthScreen(title = R.string.auth_screen),
     //Accompaniment(title = R.string.choose_accompaniment),
     Checkout(title = R.string.checkout)
 }
@@ -97,6 +100,7 @@ fun DepositAppBar(currentScreenTitle: Int,
             }
         }
     )
+
 }
 
 

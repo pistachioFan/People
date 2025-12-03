@@ -72,6 +72,11 @@ dependencies {
 
     ksp("androidx.room:room-compiler:$room_version")
 
+    implementation ("com.google.code.gson:gson:2.9.1")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
     annotationProcessor("androidx.room:room-compiler:$room_version")
     implementation(platform("androidx.compose:compose-bom:2024.12.01"))
     implementation("androidx.activity:activity-compose:1.9.3")

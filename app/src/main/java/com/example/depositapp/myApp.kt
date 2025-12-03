@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.depositapp.roomdatabase.DepDatabase
 
 class MyApp: Application(){
+
     lateinit var db: DepDatabase
     override fun onCreate() {
         super.onCreate()
