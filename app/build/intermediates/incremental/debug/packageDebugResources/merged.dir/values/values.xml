@@ -4,7 +4,6 @@
     <dimen name="padding_small">8dp</dimen>
     <dimen name="thickness_divider">1dp</dimen>
     <string name="app_name">Deposit App</string>
-    <string name="auth_screen">Auth Screen</string>
     <string name="back_button">Back</string>
     <string name="calculations_result">Calculations results</string>
     <string name="cancel">Cancel</string>
@@ -12,7 +11,10 @@
     <string name="dep_history">Deposit History</string>
     <string name="firstScreen">First Screen</string>
     <string name="income_precentage">Income Percentage:  </string>
+    <string name="login_screen">Login Screen</string>
     <string name="next">Next</string>
+    <string name="profile_screen">Profile Screen</string>
+    <string name="reg_screen">Auth Screen</string>
     <string name="return_to_main_screen">Go to Main Screen</string>
     <string name="save_results">Save Results</string>
     <string name="secondScreen">Second Screen</string>
@@ -21,6 +23,7 @@
     <string name="total_income">Total Income: </string>
     <string name="total_savings">Total savings: </string>
     <string name="total_sum">Sum:  </string>
+    <string name="users_list">Users List</string>
     <string name="view_history">View History</string>
     <style name="Theme.DepositApp" parent="android:Theme.Material.Light.NoActionBar"/>
 </resources>

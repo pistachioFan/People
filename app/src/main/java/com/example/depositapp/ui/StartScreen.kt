@@ -33,6 +33,7 @@ import com.example.depositapp.R
 
 @Composable
 fun StartScreen(
+    onProfileButtonClicked: () -> Unit,
     onStartOrderButtonClicked: () -> Unit,
     onViewSavedDepositsClicked: () -> Unit,
     modifier: Modifier = Modifier
@@ -51,6 +52,9 @@ fun StartScreen(
         Button(onClick = onViewSavedDepositsClicked,
             modifier = Modifier.widthIn(min = 230.dp)) {
             Text(stringResource(R.string.view_history))
+        }
+        Button(onClick = onProfileButtonClicked){
+            Text(text = "Profile")
         }
     }
 }

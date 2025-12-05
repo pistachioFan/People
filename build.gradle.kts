@@ -15,6 +15,7 @@
  */
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.10"
     id("com.google.devtools.ksp") version "2.0.21-1.0.27" apply false
     id("com.android.application") version "8.8.0" apply false
     id("com.android.library") version "8.8.0" apply false

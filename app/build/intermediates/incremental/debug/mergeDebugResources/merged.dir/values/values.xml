@@ -106,7 +106,6 @@
     <integer name="status_bar_notification_info_maxnum">999</integer>
     <string name="androidx_startup" translatable="false">androidx.startup</string>
     <string name="app_name">Deposit App</string>
-    <string name="auth_screen">Auth Screen</string>
     <string name="autofill">Autofill</string>
     <string name="back_button">Back</string>
     <string name="calculations_result">Calculations results</string>
@@ -129,6 +128,7 @@
     <string name="in_progress">In progress</string>
     <string name="income_precentage">Income Percentage:  </string>
     <string name="indeterminate">Partially checked</string>
+    <string name="login_screen">Login Screen</string>
     <string name="m3c_bottom_sheet_collapse_description">Collapse bottom sheet</string>
     <string name="m3c_bottom_sheet_dismiss_description">Dismiss bottom sheet</string>
     <string name="m3c_bottom_sheet_drag_handle_description">Drag handle</string>
@@ -193,8 +193,10 @@
     <string name="navigation_menu">"Navigation menu"</string>
     <string name="next">Next</string>
     <string name="not_selected">Not selected</string>
+    <string name="profile_screen">Profile Screen</string>
     <string name="range_end">"Range end"</string>
     <string name="range_start">"Range start"</string>
+    <string name="reg_screen">Auth Screen</string>
     <string name="return_to_main_screen">Go to Main Screen</string>
     <string name="save_results">Save Results</string>
     <string name="secondScreen">Second Screen</string>
@@ -214,6 +216,7 @@
     <string name="total_income">Total Income: </string>
     <string name="total_savings">Total savings: </string>
     <string name="total_sum">Sum:  </string>
+    <string name="users_list">Users List</string>
     <string name="view_history">View History</string>
     <style name="DialogWindowTheme">
         <item name="android:windowClipToOutline">false</item>
@@ -285,14 +288,23 @@
         <attr format="reference" name="fontProviderCerts"/>
         
         <attr name="fontProviderFetchStrategy">
-            
+            <!-- The blocking font fetch works as follows.
+              First, check the local cache, then if the requested font is not cached, request the
+              font from the provider and wait until it is finished.  You can change the length of
+              the timeout by modifying fontProviderFetchTimeout.  If the timeout happens, the
+              default typeface will be used instead. -->
             <enum name="blocking" value="0"/>
-            
+            <!-- The async font fetch works as follows.
+              First, check the local cache, then if the requested font is not cached, trigger a
+              request the font and continue with layout inflation. Once the font fetch succeeds, the
+              target text view will be refreshed with the downloaded font data. The
+              fontProviderFetchTimeout will be ignored if async loading is specified. -->
             <enum name="async" value="1"/>
         </attr>
         
         <attr format="integer" name="fontProviderFetchTimeout">
-            
+            <!-- A special value for the timeout. In this case, the blocking font fetching will not
+              timeout and wait until a reply is received from the font provider. -->
             <enum name="forever" value="-1"/>
         </attr>
         

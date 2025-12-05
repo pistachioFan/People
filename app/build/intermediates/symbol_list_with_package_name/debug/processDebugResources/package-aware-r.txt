@@ -203,7 +203,6 @@ mipmap ic_launcher
 mipmap ic_launcher_round
 string androidx_startup
 string app_name
-string auth_screen
 string autofill
 string back_button
 string calculations_result
@@ -226,6 +225,7 @@ string firstScreen
 string in_progress
 string income_precentage
 string indeterminate
+string login_screen
 string m3c_bottom_sheet_collapse_description
 string m3c_bottom_sheet_dismiss_description
 string m3c_bottom_sheet_drag_handle_description
@@ -286,8 +286,10 @@ string m3c_tooltip_pane_description
 string navigation_menu
 string next
 string not_selected
+string profile_screen
 string range_end
 string range_start
+string reg_screen
 string return_to_main_screen
 string save_results
 string secondScreen
@@ -307,6 +309,7 @@ string tooltip_label
 string total_income
 string total_savings
 string total_sum
+string users_list
 string view_history
 style DialogWindowTheme
 style EdgeToEdgeFloatingDialogTheme

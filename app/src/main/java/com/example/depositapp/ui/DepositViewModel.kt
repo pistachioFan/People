@@ -20,6 +20,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.depositapp.MyApp
+import com.example.depositapp.auth.AuthApiInterface
+import com.example.depositapp.auth.AuthRepository
+import com.example.depositapp.auth.GroupDC
+import com.example.depositapp.auth.LoginReqDC
+import com.example.depositapp.auth.PersonInputDC
+import com.example.depositapp.auth.RetrofitInstance
+import com.example.depositapp.auth.TokenManager
+import com.example.depositapp.auth.UserDC
+import com.example.depositapp.auth.UserinputDC
 import com.example.depositapp.model.ScreenFields
 //import com.example.depositapp.model.MenuItem.AccompanimentItem
 //import com.example.depositapp.model.MenuItem.EntreeItem
@@ -37,6 +46,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class DepositViewModel(val repository: DepositRepository) : ViewModel() {
+    val authRepository = AuthRepository(RetrofitInstance.apiInterface)
+
     val deposits: StateFlow<List<DepositEntry>> = repository.allDeposits
         .stateIn(
             scope = viewModelScope,
@@ -45,6 +56,38 @@ class DepositViewModel(val repository: DepositRepository) : ViewModel() {
     )
     private val _uiState = MutableStateFlow(DepositUiState())
     val uiState: StateFlow<DepositUiState> = _uiState.asStateFlow()
+
+    private fun updateToken(){
+        _uiState.value = _uiState.value.copy(token = TokenManager.jwttToken)
+    }
+
+    fun registerUser(user: UserinputDC){
+        viewModelScope.launch {
+            val response = authRepository.registerUser(user)
+            updateToken()
+        }
+    }
+
+    fun logUserIn(loginCreds: LoginReqDC){
+        viewModelScope.launch {
+            val response = authRepository.loginUser(loginCreds)
+            updateToken()
+        }
+    }
+
+    fun getUsers(){
+        viewModelScope.launch {
+            val users = authRepository.getAllUsers()
+            _uiState.value = _uiState.value.copy(userList = users as List<UserDC>)
+        }
+    }
+
+    fun getGroups(){
+        viewModelScope.launch {
+            val groups = authRepository.getGroups()
+            _uiState.value = _uiState.value.copy(groupList = groups as List<GroupDC>)
+        }
+    }
 
     fun updateFirstScreen(firstScreen: ScreenFields) {
         //val previousFirstScreen = _uiState.value.firstScreen

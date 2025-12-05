@@ -32,5 +32,8 @@
     <string name="view_history">View History</string>
     <string name="dep_history">Deposit History</string>
     <string name="save_results">Save Results</string>
-    <string name="auth_screen">Auth Screen</string>
+    <string name="reg_screen">Auth Screen</string>
+    <string name="login_screen">Login Screen</string>
+    <string name="users_list">Users List</string>
+    <string name="profile_screen">Profile Screen</string>
 </resources>

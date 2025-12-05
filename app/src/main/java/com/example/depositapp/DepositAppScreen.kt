@@ -50,6 +50,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.room.Room
+import com.example.depositapp.auth.LoginReqDC
+import com.example.depositapp.auth.TokenManager
 import com.example.depositapp.datasource.DataSource
 import com.example.depositapp.model.ScreenFields
 import com.example.depositapp.roomdatabase.DepositEntry
@@ -63,6 +65,7 @@ import com.example.depositapp.ui.DepositAndIRScreen
 import com.example.depositapp.ui.DepositViewModel
 import com.example.depositapp.ui.DepositViewModelFactory
 import com.example.depositapp.ui.HistoryScreen
+import com.example.depositapp.ui.LoginScreen
 import com.example.depositapp.ui.MonthlyDepAndPeriodScreen
 import com.example.depositapp.ui.StartScreen
 //import java.nio.file.WatchEvent
@@ -74,7 +77,10 @@ enum class DepositAppScreen(@StringRes val title: Int){
     DepositHistory(title = R.string.dep_history),
     FirstScreen(title = R.string.firstScreen),
     SecondScreen(title = R.string.secondScreen),
-    AuthScreen(title = R.string.auth_screen),
+    RegisterScreen(title = R.string.reg_screen),
+    LoginScreen(title = R.string.login_screen),
+    UsersListScreen(title = R.string.users_list),
+    ProfileScreen(title = R.string.profile_screen),
     //Accompaniment(title = R.string.choose_accompaniment),
     Checkout(title = R.string.checkout)
 }
@@ -133,12 +139,32 @@ fun DepositApp(app: MyApp) {
         NavHost(navController = navController,
             startDestination = DepositAppScreen.Start.name,
             modifier = Modifier.padding(innerPadding)){
+            composable(route = DepositAppScreen.RegisterScreen.name){
+
+            }
+            composable(route = DepositAppScreen.LoginScreen.name) {
+                LoginScreen (
+                    {user-> viewModel.logUserIn(user) } ,
+                    { navController.navigate(DepositAppScreen.FirstScreen.name) }
+                )
+            }
+            composable (DepositAppScreen.UsersListScreen.name){
+
+            }
             composable (route = DepositAppScreen.Start.name){
                 StartScreen(
+                    //authChecker = { TokenManager.haveToken() },
                     onStartOrderButtonClicked = {
                         navController.navigate(DepositAppScreen.FirstScreen.name) },
                     onViewSavedDepositsClicked = {
                         navController.navigate(route = DepositAppScreen.DepositHistory.name)
+                    },
+                    onProfileButtonClicked =  {
+                        if(!TokenManager.haveToken()) {
+                            navController.navigate(route = DepositAppScreen.LoginScreen.name)
+                        } else{
+                            navController.navigate(route = DepositAppScreen.ProfileScreen.name)
+                        }
                     },
                     modifier = Modifier.fillMaxSize()
                 )

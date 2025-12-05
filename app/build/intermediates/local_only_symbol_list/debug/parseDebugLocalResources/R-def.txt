@@ -8,7 +8,6 @@ drawable ic_launcher_foreground
 mipmap ic_launcher
 mipmap ic_launcher_round
 string app_name
-string auth_screen
 string back_button
 string calculations_result
 string cancel
@@ -16,7 +15,10 @@ string checkout
 string dep_history
 string firstScreen
 string income_precentage
+string login_screen
 string next
+string profile_screen
+string reg_screen
 string return_to_main_screen
 string save_results
 string secondScreen
@@ -25,5 +27,6 @@ string submit
 string total_income
 string total_savings
 string total_sum
+string users_list
 string view_history
 style Theme.DepositApp

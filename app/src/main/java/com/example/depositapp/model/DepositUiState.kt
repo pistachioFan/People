@@ -15,15 +15,20 @@
  */
 package com.example.depositapp.model
 
+import com.example.depositapp.auth.GroupDC
+import com.example.depositapp.auth.UserDC
 import com.example.depositapp.ui.StartScreen
 
 data class DepositUiState(
-    // Entree Selection
     val firstScreen: ScreenFields = ScreenFields(),
     val secondScreen: ScreenFields = ScreenFields(),
     val totalSavings: Double = 0.0,
     val incomeRate: Double = 0.0,
     val totalContribution: Double = 0.0,
     val futureValue: Double = 0.0,
-    val totalIncome: Double = 0.0
+    val totalIncome: Double = 0.0,
+
+    val token: String? = null,
+    val userList: List<UserDC> = emptyList(),
+    val groupList: List<GroupDC> = emptyList()
 )
